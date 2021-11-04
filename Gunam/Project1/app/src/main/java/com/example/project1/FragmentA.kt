@@ -1,10 +1,20 @@
 package com.example.project1
 
+import android.Manifest
+import android.app.Activity
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.example.project1.databinding.FragmentABinding
+import com.google.android.material.snackbar.Snackbar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,47 +28,63 @@ import android.view.ViewGroup
  */
 
 class FragmentA : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-/*
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private lateinit var layout: View
+    private lateinit var mContext: Context
+    private lateinit var button: Button
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context
     }
-*/
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_a, container, false)
+        val view = inflater.inflate(R.layout.fragment_a,container,false)
+        layout = view.findViewById(R.id.fragment_a)
+        button = view.findViewById(R.id.button)
+        button.setOnClickListener { checkPermission() }
+
+        return view
     }
 
 
+    fun checkPermission(){
+        val r_filePermission = ContextCompat.checkSelfPermission(mContext as Activity, Manifest.permission.READ_EXTERNAL_STORAGE)
+        //w_filePermission = ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
-/*    companion object {
-        *//**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentA.
-         *//*
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentA().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        if(r_filePermission == PackageManager.PERMISSION_GRANTED) {
+            startProcess()
+        } else {
+            requestPermission()
+        }
+    }
+
+    fun startProcess() {
+        Snackbar.make(layout, R.string.read_permission_snackbar, Snackbar.LENGTH_SHORT).show()
+    }
+
+    fun requestPermission() {
+        ActivityCompat.requestPermissions(mContext as Activity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 99)
+    }
+
+    override fun onRequestPermissionsResult(
+            requestCode: Int,
+            permissions: Array<out String>,
+            grantResults: IntArray
+    ) {
+        when (requestCode) {
+            99 -> {
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    startProcess()
+                } else {
+                    //finish()
                 }
             }
-    }*/
+        }
+    }
 }
