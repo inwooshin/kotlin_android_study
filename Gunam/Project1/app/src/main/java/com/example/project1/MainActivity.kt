@@ -3,8 +3,7 @@ package com.example.project1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.core.widget.addTextChangedListener
+import com.example.project1.Util.FragmentAdapter
 import com.example.project1.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
