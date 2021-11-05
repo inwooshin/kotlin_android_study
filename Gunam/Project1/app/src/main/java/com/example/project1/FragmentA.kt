@@ -55,7 +55,7 @@ class FragmentA : Fragment() {
 
     fun checkPermission(){
         // requireContext() , getContext()
-        val r_filePemrmission = ContextCopat.checkSelfPermission(mContext as Activity, Manifest.permission.READ_EXTERNAL_STORAGE)
+        val r_filePermission = ContextCompat.checkSelfPermission(mContext as Activity, Manifest.permission.READ_EXTERNAL_STORAGE)
         //w_filePermission = ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
         if(r_filePermission == PackageManager.PERMISSION_GRANTED) {
