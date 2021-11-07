@@ -14,6 +14,7 @@ import com.example.project1.databinding.FragmentBBinding
 
 class FragmentB : Fragment() {
 
+    // Bindng은 항상 카멜표기법 + Binding
     lateinit var binding : FragmentBBinding
 
     override fun onCreateView(
@@ -21,6 +22,7 @@ class FragmentB : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Fragment Layout 불러 올 수 있게 Binding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_b, container, false)
 
         return binding.root
@@ -29,6 +31,7 @@ class FragmentB : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // SqliteHelper 다시 한번 복습
         val helper = SqliteHelper(requireContext(),"memo",1)
 
         val adapter = RecyclerAdapter()
@@ -53,6 +56,5 @@ class FragmentB : Fragment() {
                 binding.editMemo.setText("")
             }
         }
-
     }
 }

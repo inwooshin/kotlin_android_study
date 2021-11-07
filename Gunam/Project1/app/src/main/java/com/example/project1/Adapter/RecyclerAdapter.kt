@@ -27,6 +27,9 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.Holder>() {
 
     class Holder(val binding: ItemRecyclerBinding): RecyclerView.ViewHolder(binding.root) {
         fun setMemo(memo: Memo) {
+
+            // ItemRecylcerBinding 했으니까 item_recycler.xml 가서
+            // View들 Id 확인 하기
             binding.textNo.text = "${memo.no}"
             binding.textContent.text = memo.content
 
