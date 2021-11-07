@@ -31,4 +31,8 @@
 
 ## 참고할만한 글
 
+[ 이해하고 가면 좋은 글 ]\
 https://blog.mindorks.com/understanding-context-in-android-application-330913e32514
+
+[ 따라서 깊게 공부해볼만한 글 ]\
+https://black-jin0427.tistory.com/220
