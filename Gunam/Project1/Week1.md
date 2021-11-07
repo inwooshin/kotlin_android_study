@@ -12,6 +12,13 @@
   Activity에서 ``StartActivity()``를 사용하여 다른 Activity를 호출할 수 있는 이유는 이미 해당 메소드가 설계되어있는\
   Context를 상속받아 구현되어있기 때문이다.
   
-  
-  
-  
+  ### [1] Context의 종류  
+  (1) Application Context 
+  - Application과 관련된 핵심 기능을 담고 있는 클래스.
+  - 앱을 통틀어서 하나의 인스턴스만 생성됩니다. (싱클턴?)
+  - Component에서 `getApplicationContext()`를 호출해서 사용할 수 있는데 이는 모두 동일한 Context
+
+  (2) Base Context
+  - Base Context는 4대 Component의 기반 클래스.
+  - 각각의 Component에서 `baseContext`나 `this`를 통해 사용할 수 있다.
+  - Component 개수만큼 Context도 생성된다.
