@@ -4,6 +4,7 @@
 - 시스템을 사용하기 위한 Propery와 Method가 담겨 있는 클래스
 - Component가 Runtime에 들어가면 Context가 실행되고, 생성된 Component가 가지고 있는 Method를 호출해 각각의 Method를 이용할 수 있다.
 - Android Developer Docs의 정의 
+
   >Interface to global information about an application environment. This is an abstract class whose implementation is provided by the Android system. It allows access to application-specific resources and classes, as well as up-calls for application-level operations such as launching activities, broadcasting and receiving intents, etc.
 
 ## 2. Android에서의 Context
