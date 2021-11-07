@@ -23,3 +23,12 @@
   - Base Context는 4대 Component의 기반 클래스.
   - 각각의 Component에서 `baseContext`나 `this`를 통해 사용할 수 있다.
   - Component 개수만큼 Context도 생성된다.
+
+
+
+
+
+---------------
+참고할만한 글
+
+https://blog.mindorks.com/understanding-context-in-android-application-330913e32514
