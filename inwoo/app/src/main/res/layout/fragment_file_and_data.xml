@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fileAndData"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="파일 입출력"
+            android:gravity="center"
+            android:textSize="30dp"
+            />
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/tv_show"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text="@string/hello_blank_fragment"
+            android:background="@color/purple_200"
+            />
+
+        <EditText
+            android:id="@+id/et_enter"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/teal_200"
+            android:inputType="textMultiLine|text"
+            android:text="" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="100dp"
+                android:text="저장하기"
+            />
+
+            <Button
+                android:id="@+id/btn_read"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:text="읽어오기"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
