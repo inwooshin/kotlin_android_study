@@ -35,6 +35,7 @@ class FragmentB : Fragment() {
         val helper = SqliteHelper(requireContext(),"memo",1)
 
         val adapter = RecyclerAdapter()
+        adapter.helper = helper
         adapter.listData.addAll(helper.selectMemo())
 
         binding.recyclerMemo.adapter = adapter

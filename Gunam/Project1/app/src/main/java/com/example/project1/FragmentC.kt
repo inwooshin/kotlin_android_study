@@ -5,55 +5,58 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
+import com.example.project1.Adapter.RoomAdapter
+import com.example.project1.Model.RoomMemo
+import com.example.project1.Util.RoomHelper
+import com.example.project1.Util.RoomMemoDao
+import com.example.project1.databinding.FragmentCBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentC.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FragmentC : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var binding : FragmentCBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_c, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_c, container, false)
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentC.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentC().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        var helper: RoomHelper? = null
+        helper = Room.databaseBuilder(requireContext(), RoomHelper::class.java, "room_memo")
+            .allowMainThreadQueries()
+            .build()
+
+        val adapter = RoomAdapter()
+        adapter.helper = helper
+        // helper 가 Null 일수 있으니까 ?.
+        // helper 가 Null 이면 roomMemoDao()도 Null 일수 있으니 ?.
+        // ?: (Elvis Operator)를 활용해 앞의 2개가 null 일 경우 사용할 default 값 등록
+        adapter.listData.addAll(helper?.roomMemoDao()?.getAll()?: listOf())
+        binding.recyclerMemo2.adapter = adapter
+        binding.recyclerMemo2.layoutManager = LinearLayoutManager(requireContext())
+
+        binding.buttonSave2.setOnClickListener {
+            if(binding.editMemo2.text.toString().isNotEmpty()) {
+                val memo = RoomMemo(binding.editMemo2.text.toString(),System.currentTimeMillis())
+                helper?.roomMemoDao()?.insert(memo)
+
+                adapter.listData.clear()
+                adapter.listData.addAll(helper.roomMemoDao()?.getAll()?: listOf())
+
+                adapter.notifyDataSetChanged()
+                binding.editMemo2.setText("")
             }
+        }
     }
 }
