@@ -40,7 +40,18 @@
 
 
   #### [1] `this`가 안되는 이유
+   1. 이를 이해하기 위해서는 먼저 Fragment가 생겨난 이유에 대해서 이해해 볼 필요성이 있다. <br/>
+    - 태블릿의 존재로 인해 화면이 커지면서 보다 많은 UI의 구성요소들이 조합되고 상호교환될 필요성이 존재하게 되었다. <br/>
+      그러다 보니, 하나의 Acitivy 안에서 다양한 UI 구성요소들을 효율적으로 관리해 줄 존재에 대한 필요성이 생겨났다. <br/>
+      이를 해결하기 위해 Fragment를 탄생시켜 하나의 Activity의 Layout을 여러 개의 Fragment로 나누어 관리해줄 수 있게 만들어준 것이다. <br/>
   
+  2. 그럼 Fragment와 Activity의 관계를 어떻게 이해하면 좋을까? <br/>
+    -  아래의 그림과 같이 Activity위에 Fragment가 있고 그 위에 View가 존재하는 것이다.
+  3. 그럼 왜 Context Parameter자리에 this가 될 수 없는지 짐작 가지 않는가?  <br/>
+    -  Activity는 Context에 상속받아 생기는 클래스이기 때문에 this가 가능했지만, Fragment는 Activity 위에 붙는 존재인 것이다.
+  4. **결론:**  **Activity위에 Fragment나 View가 존재한다!!** <br/>
+    - 이를 이해한다면, 지금까지 Context에 여러 가지 메소드들이 안되는 이유를 모두 이해할 수 있을 것이다.
+![image](https://lh3.googleusercontent.com/proxy/RLU9O5yJRJ9KMlMS5_SbNnlEWF8MsNkw43Jrv6AYwGOtqkWFrcUzHur2QKZKFlGwwKKwD3YDDQP5BNMTHm6FJxe8c2LcnefxezZY2w1zpTjvY0zpLCCCFkSn0ddf5RsaKg)
   
   #### [2] `getContext()`가 Null일 가능성을 띄우는 이유
   코드를 타고 들어가보니 @Nullable Annotation이 붙어 있었다!!
