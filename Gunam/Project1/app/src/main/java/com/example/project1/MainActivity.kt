@@ -3,7 +3,7 @@ package com.example.project1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.project1.Util.FragmentAdapter
+import com.example.project1.Adapter.FragmentAdapter
 import com.example.project1.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
