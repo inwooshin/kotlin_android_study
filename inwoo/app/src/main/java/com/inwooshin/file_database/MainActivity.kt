@@ -48,6 +48,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             R.id.second -> {
                 transaction!!.replace(R.id.fl_container, fileAndData())
             }
+            R.id.third -> {
+                transaction!!.replace(R.id.fl_container, sqlite())
+            }
         }
         transaction!!.addToBackStack(null)
         transaction!!.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
