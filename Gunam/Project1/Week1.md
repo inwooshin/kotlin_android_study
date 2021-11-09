@@ -66,7 +66,7 @@
   4. **결론:**  **Activity위에 Fragment나 View가 존재한다!!** <br/>
     - 이를 이해한다면, 지금까지 Context에 여러 가지 메소드들이 안되는 이유를 모두 이해할 수 있을 것이다.
 
-![image](https://lh3.googleusercontent.com/proxy/RLU9O5yJRJ9KMlMS5_SbNnlEWF8MsNkw43Jrv6AYwGOtqkWFrcUzHur2QKZKFlGwwKKwD3YDDQP5BNMTHm6FJxe8c2LcnefxezZY2w1zpTjvY0zpLCCCFkSn0ddf5RsaKg)
+![image](https://user-images.githubusercontent.com/72553228/140957963-78d1c63d-bd49-438c-bcd3-b9fa5e64cabc.png)
   
  <br/>
  <br/>
