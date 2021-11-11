@@ -59,7 +59,7 @@ class authority : Fragment() {
     }
 
     private fun startProcess() {
-        Toast.makeText(requireActivity(), "카메라를 실행합니다.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "카메라를 실행합니다.", Toast.LENGTH_SHORT).show()
     }
 
     private fun requestPermission() {
