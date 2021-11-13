@@ -12,7 +12,6 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.Holder>() {
     var listData = mutableListOf<Memo>()
     var helper: SqliteHelper? = null
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
