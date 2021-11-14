@@ -1,5 +1,6 @@
 package com.example.android.project2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.android.project2.databinding.ActivityMainBinding
@@ -55,6 +56,11 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }
+        }
+        
+        binding.btnRetrofit.setOnClickListener {
+            val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent)
         }
     }
 }
