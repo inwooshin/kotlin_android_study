@@ -15,7 +15,7 @@ class SqliteHelper(context: Context, name:String, version:Int) :SQLiteOpenHelper
     override fun onCreate(db: SQLiteDatabase?) {
         //create table 이 명령어 memo 는 이름명칭, 괄호안에는 컬럼 정의
         //primary key 가 붙으면 자동으로 1,2,3,4,5 이렇게 쭉쭉 들어간다.
-        val create = "create table memo (`no` integer primary key, content text, datetime Integer) "
+        val create = "create table memo (`no` integer primary key, content text, datetime integer)"
         db?.execSQL(create)
     }
 
@@ -36,7 +36,7 @@ class SqliteHelper(context: Context, name:String, version:Int) :SQLiteOpenHelper
         //Menu를 입력타입으로 변환해줌
         val values = ContentValues()
         values.put("content", memo.content)
-        values.put("datatime", memo.datetime)
+        values.put("datetime", memo.datetime)
 
         //db에 넣기
         wd.insert("memo", null, values)
