@@ -49,7 +49,6 @@ class fileAndData : Fragment() {
 
         //app 기본 경로에서 files dir 밑에
         //memo dir 가 생성된다.
-
         val dir = File(requireContext().filesDir.path + "/" + drName)
 
         if(!dir.exists()) dir.mkdirs()
