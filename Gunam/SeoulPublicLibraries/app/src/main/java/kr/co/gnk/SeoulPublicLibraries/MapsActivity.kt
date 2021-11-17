@@ -1,5 +1,7 @@
 package kr.co.gnk.SeoulPublicLibraries
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -49,6 +51,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         //mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydeny"))
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         loadLibraries()
+
+        mMap.setOnMarkerClickListener {
+            if(it.tag != null) {
+                var url = it.tag as String
+                if(!url.startsWith("http")) {
+                    url = "http://${url}"
+                }
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            }
+            true
+        }
+
     }
 
     fun loadLibraries() {
@@ -80,7 +95,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         for (lib in libraries.SeoulPublicLibraryInfo.row){
             val position = LatLng(lib.XCNTS.toDouble(), lib.YDNTS.toDouble())
             val marker = MarkerOptions().position(position).title(lib.LBRRY_NAME)
-            mMap.addMarker(marker)
+            var obj = mMap.addMarker(marker)
+            obj?.tag = lib.HMPG_URL
+
             latLngBounds.include(marker.position)
         }
 
