@@ -49,7 +49,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     fun loadLibraries(){
         //Gson은 JSON의 자바 오브젝트의 직렬화, 역직렬화를 해주는 오픈 소스 자바 라이브러리이다.
-        // 전체 클래스 계층에 대한 변환 로직을 한 곳에모으려고할 때 Converter Factory를 사용
+        //전체 클래스 계층에 대한 변환 로직을 한 곳에모으려고할 때 Converter Factory를 사용
         val retrofit = Retrofit.Builder()
             .baseUrl(SeoulOpenApi.DOMAIN) //여기에서 null 인지 확인하고 http Url 로 변경시키고 넘겨준다.
             .addConverterFactory(GsonConverterFactory.create())
