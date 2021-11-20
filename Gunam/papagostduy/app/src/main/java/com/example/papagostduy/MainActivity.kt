@@ -4,8 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.example.papagostduy.data.PapagoMessage
-import com.example.papagostduy.databinding.ActivityMainBinding
+import com.example.papagostduy.viewmodel.TranslateViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,16 +15,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    private val CLIENT_ID = "tA_4p6FooduqVlTzZFdh"
-    private val CLIENT_SECRET = "7Ic_JvHndt"
+    //private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        //binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(R.layout.activity_main)
+        //translateText()
 
-        translateText()
     }
 
     fun translateText() {
@@ -32,9 +32,9 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val PapagoService = retrofit.create(NaverPapagoAPI::class.java)
+        val PapagoService = retrofit.create(NaverPapagoService::class.java)
 
-        val PapagoMethod = PapagoService.getTranslatePapago(CLIENT_ID,CLIENT_SECRET,"ko","en","안녕하세요.");
+        val PapagoMethod = PapagoService.getTranslatePapago("tA_4p6FooduqVlTzZFdh","7Ic_JvHndt","ko","en","안녕하세요.");
             PapagoMethod.enqueue(object: Callback<PapagoMessage> {
                 override fun onResponse(
                     call: Call<PapagoMessage>,
